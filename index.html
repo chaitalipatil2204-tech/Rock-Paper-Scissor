@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors App by Kamal Sir</title>
+    <style>
+        * {
+            font-size: 40px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: azure;
+            padding: 20px;
+        }
+        .btn {
+            width: 20%;
+            border-radius: 30px;
+            margin: 20px;
+            padding: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+    <form onsubmit="return winner(event)">
+        <input type="submit" value="rock" class="btn" />
+        <input type="submit" value="paper" class="btn" />
+        <input type="submit" value="scissors" class="btn" />
+    </form>
+
+    <h2 id="msg"></h2>
+
+    <script>
+        function winner(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const msg = document.getElementById("msg");
+            const user = event.submitter.value.toLowerCase();
+            const choices = ["rock", "paper", "scissors"];
+            const computer = choices[Math.floor(Math.random() * choices.length)];
+
+            let result = "";
+
+            if (user === computer) {
+                result = "It's a tie!";
+            } else if (
+                (user === "rock" && computer === "scissors") ||
+                (user === "paper" && computer === "rock") ||
+                (user === "scissors" && computer === "paper")
+            ) {
+                result = "You win!";
+            } else {
+                result = "Computer wins!";
+            }
+
+            msg.innerHTML = `You chose <b>${user}</b>, computer chose <b>${computer}</b>.<br>${result}`;
+        }
+    </script>
+</body>
+</html>
